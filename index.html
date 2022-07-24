@@ -4,28 +4,60 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+         rel="stylesheet"
+      />
       <title>Todo Apps</title>
       <link rel="stylesheet" href="css/style.css" />
    </head>
 
    <body>
       <header>
-         <h1>Todo List</h1>
+         <h1>Bookshelf App</h1>
       </header>
 
       <div class="wrapper">
-         <div class="container bg-white shadow" id="add-todo">
-            <h2 class="container-header text-center">
-               Tambah yang harus dilakukan
-            </h2>
+         <div class="container" id="add-todo">
+            <h2 class="container-header text-center">Masukkan Buku Baru</h2>
             <form class="form" action="#" id="form">
                <div class="form-group form-title">
-                  <label for="title">Masukkan hal yang akan dilakukan</label>
-                  <input type="text" id="title" name="title" required />
+                  <input
+                     type="text"
+                     id="title"
+                     name="title"
+                     placeholder="Judul"
+                     required
+                  />
                </div>
                <div class="form-group form-title">
-                  <label for="date">Masukkan tanggal harus selesai</label>
-                  <input type="date" id="date" name="date" required />
+                  <input
+                     type="text"
+                     id="author"
+                     name="author"
+                     placeholder="Penulis"
+                     required
+                  />
+               </div>
+               <div class="form-group form-title">
+                  <input
+                     type="number"
+                     id="year"
+                     name="year"
+                     placeholder="Tahun"
+                     required
+                  />
+               </div>
+               <div class="form-group form-checkbox">
+                  <label for="is-finished">Selesai Dibaca</label>
+                  <input
+                     type="checkbox"
+                     id="is-finished"
+                     name="is-finished"
+                     required
+                  />
                </div>
                <input
                   type="submit"
@@ -36,32 +68,33 @@
             </form>
          </div>
          <div class="container">
-            <h2 class="container-header">Yang harus dilakukan</h2>
-            <div class="list-item" id="todos">
-               <!-- <div class="item shadow">
+            <h2 class="container-header">Belum Selesai Indonesia</h2>
+            <div class="list-item" id="unfinished-book">
+               <div class="item shadow">
                   <div class="inner">
-                     <h2>Tugas Android</h2>
-                     <p>2021-05-01</p>
+                     <h2>Penance</h2>
+                     <p>Minato Kanae | 2021</p>
                   </div>
                   <button class="check-button"></button>
-               </div> -->
+                  <buttonc= class="trash-button"></buttonc=>
+               </div>
             </div>
          </div>
          <div class="container">
-            <h2 class="container-header">Yang sudah dilakukan</h2>
-            <div class="list-item" id="completed-todos">
-               <!-- <div class="item shadow">
+            <h2 class="container-header">Selesai Dibaca</h2>
+            <div class="list-item" id="finished-book">
+               <div class="item shadow">
                   <div class="inner">
-                     <h2>Tugas Web</h2>
-                     <p>2021-05-02</p>
+                     <h2>Hujan</h2>
+                     <p>Tere Liye | 2012</p>
                   </div>
                   <button class="undo-button"></button>
                   <button class="trash-button"></button>
-               </div> -->
+               </div>
             </div>
          </div>
       </div>
       <script src="/js/storage.js"></script>
-      <script src="/js/script.js"></script>
+      <script src="/js/main.js"></script>
    </body>
 </html>

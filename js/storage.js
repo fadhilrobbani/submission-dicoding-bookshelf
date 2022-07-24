@@ -1,37 +1,22 @@
-const todos = [];
-const TODOS_KEY = "todos-key";
+const books = [];
+const BOOKS_KEY = "books-key";
 const RENDER_EVENT = "render-event";
 const SET_EVENT = "set-event";
 
 const isStorageExist = () => {
-   return typeof Storage === undefined;
-};
-
-const render = () => {
-   const uncompletedTodolist = document.getElementById("todos");
-   uncompletedTodolist.innerHTML = "";
-   const completedTodolist = document.getElementById("completed-todos");
-   completedTodolist.innerHTML = "";
-
-   for (const todo of todos) {
-      const todoElement = makeTodo(todo);
-      if (!todo.isCompleted) {
-         uncompletedTodolist.append(todoElement);
-      } else {
-         completedTodolist.append(todoElement);
-      }
+   if (typeof Storage === undefined) {
+      console.warn("STORAGE DOESN'T EXIST");
+      return false;
    }
-
-   document.dispatchEvent(new Event(RENDER_EVENT));
+   return true;
 };
 
 const getDataFromStorage = (key) => {
    if (isStorageExist) {
-      const dataJson = JSON.parse(localStorage.getItem(key));
-
-      if (dataJson !== null) {
-         for (const todo of dataJson) {
-            todos.push(todo);
+      const booksData = JSON.parse(localStorage.getItem(key));
+      if (booksData !== null) {
+         for (const book of booksData) {
+            books.push(book);
          }
       }
    }
@@ -39,8 +24,10 @@ const getDataFromStorage = (key) => {
 
 const setDataToStorage = (key, value) => {
    if (isStorageExist) {
-      const stringJson = JSON.stringify(value);
-      localStorage.setItem(key, stringJson);
+      const booksString = JSON.stringify(todos);
+      localStorage.setItem(key, value);
       document.dispatchEvent(new Event(SET_EVENT));
    }
 };
+
+const render = () => {};

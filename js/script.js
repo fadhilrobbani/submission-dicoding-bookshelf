@@ -34,6 +34,7 @@ const addTodo = () => {
 
 const makeTodo = (todoObject) => {
    const textTitle = document.createElement("h2");
+   textTitle.style.color();
    textTitle.innerText = todoObject.task;
 
    const textTimestamp = document.createElement("p");
