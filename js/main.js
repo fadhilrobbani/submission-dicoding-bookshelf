@@ -7,7 +7,6 @@ const render = () => {
    uncompletedBook.innerHTML = "";
    const completedBook = document.getElementById("completed-book");
    completedBook.innerHTML = "";
-
    for (const book of books) {
       const bookElement = makeBook(book);
       if (!book.isComplete) {
@@ -17,7 +16,6 @@ const render = () => {
       }
    }
    console.log("BERHASIL DIRENDER");
-
    document.dispatchEvent(new Event(RENDER_EVENT));
 };
 
@@ -37,6 +35,7 @@ const addBook = () => {
    );
    books.push(bookObject);
    setDataToStorage(BOOKS_KEY, books);
+   render();
    console.log(books);
 };
 
@@ -51,7 +50,15 @@ const moveBookToCompleted = (bookId) => {
    render();
 };
 
-const moveBookToUncompleted = () => {};
+const moveBookToUncompleted = (bookId) => {
+   const findBook = findBookById(bookId);
+   if (findBook !== null) {
+      findBook.isComplete = false;
+   }
+
+   setDataToStorage(BOOKS_KEY, books);
+   render();
+};
 
 const deleteBook = () => {};
 

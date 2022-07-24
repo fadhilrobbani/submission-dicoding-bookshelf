@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
    submitForm.addEventListener("submit", (ev) => {
       ev.preventDefault();
       addBook();
+      render();
    });
-   getDataFromStorage(BOOKS_KEY);
    render();
 });
