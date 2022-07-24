@@ -1,7 +1,5 @@
 const books = [];
 const BOOKS_KEY = "books-key";
-const RENDER_EVENT = "render-event";
-const SET_EVENT = "set-event";
 
 const isStorageExist = () => {
    if (typeof Storage === undefined) {
@@ -24,10 +22,8 @@ const getDataFromStorage = (key) => {
 
 const setDataToStorage = (key, value) => {
    if (isStorageExist) {
-      const booksString = JSON.stringify(todos);
-      localStorage.setItem(key, value);
+      const booksString = JSON.stringify(value);
+      localStorage.setItem(key, booksString);
       document.dispatchEvent(new Event(SET_EVENT));
    }
 };
-
-const render = () => {};

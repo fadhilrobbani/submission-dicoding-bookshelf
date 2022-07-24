@@ -180,7 +180,7 @@ input[type=text], input[type=date], input[type=number], .btn-submit:focus {
     background-size: contain;
 }
 
-.undo-button {
+.uncheck-button {
     width: 40px;
     height: 40px;
 
@@ -191,7 +191,7 @@ input[type=text], input[type=date], input[type=number], .btn-submit:focus {
     border: none;
 }
 
-.undo-button:hover {
+.uncheck-button:hover {
     background: url('../assets/uncheck-fill.svg');
     background-size: contain;
 }
