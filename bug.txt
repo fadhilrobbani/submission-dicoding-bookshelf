@@ -1,0 +1,3 @@
+saat melakukan pencarian, kemudian mencoba checklist,hapus, atau edit. maka dia malah render si array books
+SOLUSI:
+kita set visibilitasnya saja pada dom pakai toggle

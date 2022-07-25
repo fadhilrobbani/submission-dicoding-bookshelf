@@ -1,13 +1,42 @@
 const RENDER_EVENT = "render-event";
 const SET_EVENT = "set-event";
 const checkboxValue = document.getElementById("is-completed");
+const searchBar = document.getElementById("search");
 
-const render = () => {
+checkboxValue.addEventListener("click", () => {
+   isCompleted();
+});
+
+searchBar.addEventListener("input", (ev) => {
+   const value = ev.target.value.toLowerCase().replace(/\s+/g, "");
+   const filteredBook = findBookByTitle(value);
+   render(filteredBook);
+   filteredBook.splice(0, filteredBook.length);
+});
+
+document.addEventListener(RENDER_EVENT, () => {});
+
+document.addEventListener(SET_EVENT, () => {});
+
+document.addEventListener("DOMContentLoaded", () => {
+   const addForm = document.getElementById("form");
+   addForm.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      addBook();
+      render(books);
+      addForm.reset();
+   });
+
+   getDataFromStorage(BOOKS_KEY);
+   render(books);
+});
+
+const render = (booksArray) => {
    const uncompletedBook = document.getElementById("uncompleted-book");
    uncompletedBook.innerHTML = "";
    const completedBook = document.getElementById("completed-book");
    completedBook.innerHTML = "";
-   for (const book of books) {
+   for (const book of booksArray) {
       const bookElement = makeBook(book);
       if (!book.isComplete) {
          uncompletedBook.append(bookElement);
@@ -15,7 +44,6 @@ const render = () => {
          completedBook.append(bookElement);
       }
    }
-   console.log("BERHASIL DIRENDER");
    document.dispatchEvent(new Event(RENDER_EVENT));
 };
 
@@ -100,7 +128,6 @@ const addBook = () => {
    );
    books.push(bookObject);
    setDataToStorage(BOOKS_KEY, books);
-   console.log(books);
 };
 
 const moveBookToCompleted = (bookId) => {
@@ -111,7 +138,7 @@ const moveBookToCompleted = (bookId) => {
    }
 
    setDataToStorage(BOOKS_KEY, books);
-   render();
+   render(books);
 };
 
 const moveBookToUncompleted = (bookId) => {
@@ -121,7 +148,7 @@ const moveBookToUncompleted = (bookId) => {
    }
 
    setDataToStorage(BOOKS_KEY, books);
-   render();
+   render(books);
 };
 
 const deleteBook = (bookId) => {
@@ -131,7 +158,7 @@ const deleteBook = (bookId) => {
       }
    }
    setDataToStorage(BOOKS_KEY, books);
-   render();
+   render(books);
 };
 
 const editBook = (bookId) => {
@@ -148,7 +175,7 @@ const editBook = (bookId) => {
    }
 
    setDataToStorage(BOOKS_KEY, books);
-   render();
+   render(books);
 };
 
 const generateBookObject = (id, title, author, year, isComplete) => {

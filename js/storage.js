@@ -37,4 +37,13 @@ const findBookById = (bookId) => {
    return null;
 };
 
-const findBookByTitle = () => {};
+const findBookByTitle = (bookTitle) => {
+   const filteredBook = [];
+   for (const book of books) {
+      const searchBook = book.title.toLowerCase().replace(/\s+/g, "");
+      if (searchBook.includes(bookTitle)) {
+         filteredBook.push(book);
+      }
+   }
+   return filteredBook;
+};
