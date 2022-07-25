@@ -12,13 +12,14 @@ document.addEventListener(SET_EVENT, () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-   const submitForm = document.getElementById("form");
-   submitForm.addEventListener("submit", (ev) => {
+   const addForm = document.getElementById("form");
+   addForm.addEventListener("submit", (ev) => {
       ev.preventDefault();
       addBook();
       render();
-      submitForm.reset();
+      addForm.reset();
    });
+
    getDataFromStorage(BOOKS_KEY);
    render();
 });

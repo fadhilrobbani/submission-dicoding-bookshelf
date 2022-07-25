@@ -75,11 +75,59 @@
             <div class="list-item" id="completed-book"></div>
          </div>
       </div>
-      <div class="modal" id="modal">
-         <div class="modal-content">
-            <h3 id="modalMessage"></h3>
-            <button class="modal-content-confirm" id="yesButton">Yes</button>
-            <button class="modal-content-confirm" id="noButton">No</button>
+      <div class="confirm-modal" id="confirmModal">
+         <div class="confirm-modal-content">
+            <h3 id="confirmModalMessage"></h3>
+            <button class="modal-content-button" id="yesConfirmButton">
+               Yes
+            </button>
+            <button class="modal-content-button" id="noConfirmButton">
+               No
+            </button>
+         </div>
+      </div>
+      <div class="form-modal" id="formModal">
+         <div class="form-modal-content">
+            <h3 id="formModalMessage"></h3>
+            <form id="editForm">
+               <div class="form-group form-author">
+                  <input
+                     type="text"
+                     name="editTitle"
+                     id="editTitle"
+                     placeholder="Judul"
+                     required
+                  />
+               </div>
+               <div class="form-group form-author">
+                  <input
+                     type="text"
+                     name="editAuthor"
+                     id="editAuthor"
+                     placeholder="Penulis"
+                     required
+                  />
+               </div>
+               <div class="form-group form-author">
+                  <input
+                     type="number"
+                     name="editYear"
+                     id="editYear"
+                     placeholder="Tahun"
+                     required
+                  />
+               </div>
+               <button
+                  type="submit"
+                  class="modal-content-button"
+                  id="updateFormButton"
+               >
+                  Update
+               </button>
+               <button class="modal-content-button" id="cancelFormButton">
+                  Cancel
+               </button>
+            </form>
          </div>
       </div>
       <script src="/js/storage.js"></script>

@@ -40,12 +40,21 @@ const makeBook = (bookObject) => {
       trashButton.classList.add("trash-button");
       trashButton.addEventListener("click", () => {
          confirmDialog(
-            "Are you sure to delete this book?",
+            `Apakah Anda yakin ingin menghapus buku "${bookObject.title}"?`,
             deleteBook,
             bookObject.id
          );
       });
       return trashButton;
+   };
+
+   const makeEditButton = () => {
+      const editButton = document.createElement("button");
+      editButton.classList.add("edit-button");
+      editButton.addEventListener("click", () => {
+         formDialog(`Edit Buku "${bookObject.title}"`, editBook, bookObject);
+      });
+      return editButton;
    };
 
    if (!bookObject.isComplete) {
@@ -56,8 +65,9 @@ const makeBook = (bookObject) => {
       });
 
       const trashButton = makeTrashButton();
+      const editButton = makeEditButton();
 
-      container.append(checkButton, trashButton);
+      container.append(checkButton, editButton, trashButton);
    } else {
       const uncheckButton = document.createElement("button");
       uncheckButton.classList.add("uncheck-button");
@@ -66,8 +76,9 @@ const makeBook = (bookObject) => {
       });
 
       const trashButton = makeTrashButton();
+      const editButton = makeEditButton();
 
-      container.append(uncheckButton, trashButton);
+      container.append(uncheckButton, editButton, trashButton);
    }
 
    return container;
@@ -123,6 +134,23 @@ const deleteBook = (bookId) => {
    render();
 };
 
+const editBook = (bookId) => {
+   const editTitle = document.getElementById("editTitle").value;
+   const editAuthor = document.getElementById("editAuthor").value;
+   const editYear = document.getElementById("editYear").value;
+
+   for (let i = 0; i < books.length; i++) {
+      if (books[i].id === bookId) {
+         books[i].title = editTitle;
+         books[i].author = editAuthor;
+         books[i].year = editYear;
+      }
+   }
+
+   setDataToStorage(BOOKS_KEY, books);
+   render();
+};
+
 const generateBookObject = (id, title, author, year, isComplete) => {
    return {
       id,
@@ -139,20 +167,46 @@ const isCompleted = () => {
 };
 
 const confirmDialog = (message, callback, bookId) => {
-   const modal = document.getElementById("modal");
-   const modalMessage = document.getElementById("modalMessage");
-   modalMessage.innerText = message;
-   modal.style.display = "flex";
+   const confirmModal = document.getElementById("confirmModal");
+   const confirmModalMessage = document.getElementById("confirmModalMessage");
+   confirmModalMessage.innerText = message;
+   confirmModal.style.display = "flex";
 
-   const yesButton = document.getElementById("yesButton");
-   const noButton = document.getElementById("noButton");
+   const yesButton = document.getElementById("yesConfirmButton");
+   const noButton = document.getElementById("noConfirmButton");
 
    yesButton.onclick = () => {
       callback(bookId);
-      modal.style.display = "none";
+      confirmModal.style.display = "none";
    };
 
    noButton.onclick = () => {
-      modal.style.display = "none";
+      confirmModal.style.display = "none";
+   };
+};
+
+const formDialog = (message, callback, bookObject) => {
+   const formModal = document.getElementById("formModal");
+   const formModalMessage = document.getElementById("formModalMessage");
+   const cancelButton = document.getElementById("cancelFormButton");
+   const editTitle = document.getElementById("editTitle");
+   const editAuthor = document.getElementById("editAuthor");
+   const editYear = document.getElementById("editYear");
+
+   formModalMessage.innerText = message;
+   editTitle.value = bookObject.title;
+   editAuthor.value = bookObject.author;
+   editYear.value = bookObject.year;
+   formModal.style.display = "flex";
+
+   formModal.onsubmit = (ev) => {
+      ev.preventDefault();
+      callback(bookObject.id);
+      formModal.style.display = "none";
+   };
+
+   cancelButton.onclick = (ev) => {
+      ev.preventDefault();
+      formModal.style.display = "none";
    };
 };

@@ -88,7 +88,7 @@ h1{
    
 }
 
-#is-finished{
+#is-completed{
  cursor: pointer;
 }
 
@@ -200,7 +200,23 @@ input[type=text], input[type=date], input[type=number], .btn-submit:focus {
     outline: none;
 }
 
-.modal{
+.edit-button{
+    width: 40px;
+    height: 40px;
+
+    background: url('../assets/pencil-outline.svg');
+    background-size: contain;
+    margin-left: 17px;
+    cursor: pointer;
+    border: none;
+}
+
+.edit-button:hover{
+    background: url('../assets/pencil-fill.svg');
+    background-size: contain;
+}
+
+.confirm-modal{
     position:fixed;
     display: none;
     z-index: 1; 
@@ -210,10 +226,10 @@ input[type=text], input[type=date], input[type=number], .btn-submit:focus {
     height: 100%;
     overflow: auto; 
     background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.2); 
+    background-color: rgba(0,0,0,0.4); 
 }
 
-.modal-content{
+.confirm-modal-content{
     
     background-color: #fefefe;
     border-radius: 16px;
@@ -228,7 +244,7 @@ input[type=text], input[type=date], input[type=number], .btn-submit:focus {
     text-align: center;
 }
 
-.modal-content-confirm{
+.modal-content-button{
     font-family: 'Montserrat', sans-serif;
     border-radius: 16px;
     padding: 6px 19px;
@@ -242,10 +258,37 @@ input[type=text], input[type=date], input[type=number], .btn-submit:focus {
     background: #5F30E2;
 }
 
-.modal-content-confirm:hover{
+.modal-content-button:hover{
     background: #ffffff;
     cursor: pointer;
     color: #5F30E2;
+}
+
+.form-modal{
+    position:fixed;
+    display: none;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.form-modal-content{
+    background-color: #fefefe;
+    border-radius: 16px;
+    border: none;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 50%;
+    margin: auto;
+    height: fit-content; 
+    text-align: center;
 }
 
 @media only screen and (max-width: 1024px) {
