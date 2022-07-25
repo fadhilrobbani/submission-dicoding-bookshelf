@@ -27,3 +27,14 @@ const setDataToStorage = (key, value) => {
       document.dispatchEvent(new Event(SET_EVENT));
    }
 };
+
+const findBookById = (bookId) => {
+   for (const book of books) {
+      if (book.id === bookId) {
+         return book;
+      }
+   }
+   return null;
+};
+
+const findBookByTitle = () => {};
