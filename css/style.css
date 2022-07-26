@@ -13,28 +13,72 @@ html, body {
 }
 
 header {
-    background: #371B58;
-    padding: 16px;
-    color: white;
+    background: rgba(0,0,0,0);
+    padding-bottom: 20px;
+    color: rgb(182, 182, 182);
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 h1{
     text-align: center;
+    color: white;
+}
+
+
+
+.container-search{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 input#search{
-    position: sticky;
     height: 40px;
-    width: 40%;
-    align-self: center;
+    width: 400px;
     font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    background: rgba(149, 63, 196, 0.78);
+    border:none;
+    outline: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: white;
+    padding-left: 15px;
+    margin-right: 20px;
+
+
 }
+
+input#search::placeholder{
+    color: rgba(240, 255, 255, 0.7);
+}
+
+input#search:focus{
+    background-color: rgba(149, 63, 196, 1);
+}
+
+
 
 .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.container#add-container{
+    width: 97.5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background: none;
+    margin: 15px 10px 0px 10px;
+}
+
 
 .add-modal{
     position:fixed;
@@ -78,6 +122,23 @@ input#search{
     align-self: center;
     cursor: pointer;
     background: #ca1b0e;
+}
+
+.add-button{
+    width: 40px;
+    height: 40px;
+
+    background: url('../assets/add-outline.svg');
+    background-size: contain;
+    cursor: pointer;
+    border: none;
+
+}
+
+.add-button:hover{
+    background: url('../assets/add-fill.svg');
+    background-size: contain;
+    color: #F5F1FF;
 }
 
 .wrapper .container {
@@ -159,9 +220,9 @@ input#search{
     box-shadow: 0 5px 10px rgba(154, 160, 185, .05), 0 15px 40px rgba(166, 173, 201, .2);
 }
 
-input[type=text], input[type=date], input[type=number] {
+.form-group input[type=text], .form-group input[type=date], .form-group input[type=number] {
     font-family: 'Montserrat', sans-serif;
-    background: #b5a5de;
+    background: rgba(181,165,222,0.9);
     border: 2px solid #9475EA;
     border-radius: 8px;
     padding: 16px;
@@ -191,7 +252,8 @@ input[type=text], input[type=date], input[type=number] {
     color: black;
 }
 
-input[type=text], input[type=date], input[type=number], .btn-submit:focus {
+
+.form-group input[type=text], .form-group input[type=date], .form-group input[type=number], .btn-submit:focus {
     outline: none;
 }
 
@@ -352,24 +414,11 @@ input[type=text], input[type=date], input[type=number], .btn-submit:focus {
     text-align: center;
 }
 
-@media only screen and (max-width: 1024px) {
-    .wrapper {
-        margin: 0;
-    }
-
-    .wrapper .container {
+@media only screen and (max-width: 998px) {
+    .container-iscompleted#container-iscompleted{
+        display: flex;
+        flex-direction: row;
         width: 100%;
     }
-
-    .list-item {
-        width: 90%;
-    }
-
-    .form {
-        width: 100%;
-    }
-
-    .list-item{
-        width: auto;
-    }
+    
 }

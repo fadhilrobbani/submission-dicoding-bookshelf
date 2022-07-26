@@ -222,6 +222,12 @@ const addFormDialog = () => {
       ev.preventDefault();
       addForm.style.display = "none";
    };
+
+   // addForm.onclick = (ev) => {
+   //    ev.preventDefault();
+   //    ev.stopPropagation();
+   //    addForm.style.display = "none";
+   // };
 };
 
 const editFormDialog = (message, bookObject) => {
