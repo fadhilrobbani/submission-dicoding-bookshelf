@@ -37,11 +37,17 @@ const findBookById = (bookId) => {
    return null;
 };
 
-const findBookByTitle = (bookTitle) => {
+const findBook = (searchValue) => {
    const filteredBook = [];
    for (const book of books) {
-      const searchBook = book.title.toLowerCase().replace(/\s+/g, "");
-      if (searchBook.includes(bookTitle)) {
+      const titleBook = book.title.toLowerCase().replace(/\s+/g, "");
+      const authorBook = book.author.toLowerCase().replace(/\s+/g, "");
+      const yearBook = book.year.toString().toLowerCase().replace(/\s+/g, "");
+      if (
+         titleBook.includes(searchValue) ||
+         authorBook.includes(searchValue) ||
+         yearBook.includes(searchValue)
+      ) {
          filteredBook.push(book);
       }
    }

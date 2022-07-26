@@ -17,12 +17,35 @@
    <body>
       <header>
          <h1>Bookshelf App</h1>
+         <div class="form-group">
+            <input
+               type="text"
+               id="search"
+               name="search"
+               placeholder="Cari Buku"
+            />
+         </div>
+         <button id="add-book">Add</button>
       </header>
 
       <div class="wrapper">
-         <div class="container" id="add-todo">
-            <h2 class="container-header text-center">Masukkan Buku Baru</h2>
-            <form class="form" action="#" id="form">
+         <div class="container-iscompleted" id="container-iscompleted">
+            <div class="container">
+               <h2 class="container-header text-center">
+                  Belum Selesai Indonesia
+               </h2>
+               <div class="list-item" id="uncompleted-book"></div>
+            </div>
+            <div class="container">
+               <h2 class="container-header text-center">Selesai Dibaca</h2>
+               <div class="list-item" id="completed-book"></div>
+            </div>
+         </div>
+      </div>
+      <div class="add-modal" id="addFormModal">
+         <div class="add-modal-content">
+            <h2 class="text-center">Masukkan Buku Baru</h2>
+            <form class="form" action="#" id="addForm">
                <div class="form-group form-title">
                   <input
                      type="text"
@@ -64,26 +87,10 @@
                   name="Submit"
                   class="btn-submit"
                />
+               <button class="add-modal-cancelbutton" id="cancelAddFormButton">
+                  Cancel
+               </button>
             </form>
-         </div>
-         <div class="container">
-            <h2 class="container-header text-center">Cari Buku</h2>
-            <div class="form-group">
-               <input
-                  type="text"
-                  id="search"
-                  name="search"
-                  placeholder="Masukkan Judul"
-               />
-            </div>
-         </div>
-         <div class="container">
-            <h2 class="container-header">Belum Selesai Indonesia</h2>
-            <div class="list-item" id="uncompleted-book"></div>
-         </div>
-         <div class="container">
-            <h2 class="container-header">Selesai Dibaca</h2>
-            <div class="list-item" id="completed-book"></div>
          </div>
       </div>
       <div class="confirm-modal" id="confirmModal">
@@ -97,9 +104,9 @@
             </button>
          </div>
       </div>
-      <div class="form-modal" id="formModal">
+      <div class="form-modal" id="editFormModal">
          <div class="form-modal-content">
-            <h3 id="formModalMessage"></h3>
+            <h3 id="editFormModalMessage"></h3>
             <form id="editForm">
                <div class="form-group form-author">
                   <input
@@ -135,7 +142,7 @@
                >
                   Update
                </button>
-               <button class="modal-content-button" id="cancelFormButton">
+               <button class="modal-content-button" id="cancelEditFormButton">
                   Cancel
                </button>
             </form>

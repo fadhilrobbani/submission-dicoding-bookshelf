@@ -2,6 +2,7 @@ const RENDER_EVENT = "render-event";
 const SET_EVENT = "set-event";
 const checkboxValue = document.getElementById("is-completed");
 const searchBar = document.getElementById("search");
+const addBookButton = document.getElementById("add-book");
 
 checkboxValue.addEventListener("click", () => {
    isCompleted();
@@ -15,19 +16,15 @@ searchBar.addEventListener("focus", () => {
    searchBar.select();
 });
 
+addBookButton.addEventListener("click", () => {
+   addFormDialog();
+});
+
 document.addEventListener(RENDER_EVENT, () => {});
 
 document.addEventListener(SET_EVENT, () => {});
 
 document.addEventListener("DOMContentLoaded", () => {
-   const addForm = document.getElementById("form");
-   addForm.addEventListener("submit", (ev) => {
-      ev.preventDefault();
-      addBook();
-      render();
-      addForm.reset();
-   });
-
    getDataFromStorage(BOOKS_KEY);
    render();
 });
@@ -50,7 +47,7 @@ const render = () => {
 
    if (searchBar.value !== "") {
       const value = searchBar.value.toLowerCase().replace(/\s+/g, "");
-      const filteredBook = findBookByTitle(value);
+      const filteredBook = findBook(value);
       renderEach(filteredBook);
       document.dispatchEvent(new Event(RENDER_EVENT));
       filteredBook.splice(0, filteredBook.length);
@@ -93,7 +90,7 @@ const makeBook = (bookObject) => {
       const editButton = document.createElement("button");
       editButton.classList.add("edit-button");
       editButton.addEventListener("click", () => {
-         formDialog(`Edit Buku "${bookObject.title}"`, editBook, bookObject);
+         editFormDialog(`Edit Buku "${bookObject.title}"`, bookObject);
       });
       return editButton;
    };
@@ -141,6 +138,7 @@ const addBook = () => {
    );
    books.push(bookObject);
    setDataToStorage(BOOKS_KEY, books);
+   render();
 };
 
 const moveBookToCompleted = (bookId) => {
@@ -206,6 +204,53 @@ const isCompleted = () => {
    return false;
 };
 
+const addFormDialog = () => {
+   const addForm = document.getElementById("addFormModal");
+   const submitAddForm = document.getElementById("addForm");
+   const cancelButton = document.getElementById("cancelAddFormButton");
+
+   addForm.style.display = "flex";
+
+   submitAddForm.onsubmit = (ev) => {
+      ev.preventDefault();
+      addBook();
+      submitAddForm.reset();
+      addForm.style.display = "none";
+   };
+
+   cancelButton.onclick = (ev) => {
+      ev.preventDefault();
+      addForm.style.display = "none";
+   };
+};
+
+const editFormDialog = (message, bookObject) => {
+   const editForm = document.getElementById("editFormModal");
+   const submitEditForm = document.getElementById("editForm");
+   const editFormModalMessage = document.getElementById("editFormModalMessage");
+   const cancelButton = document.getElementById("cancelEditFormButton");
+   const editTitle = document.getElementById("editTitle");
+   const editAuthor = document.getElementById("editAuthor");
+   const editYear = document.getElementById("editYear");
+
+   editFormModalMessage.innerText = message;
+   editTitle.value = bookObject.title;
+   editAuthor.value = bookObject.author;
+   editYear.value = bookObject.year;
+   editForm.style.display = "flex";
+
+   submitEditForm.onsubmit = (ev) => {
+      ev.preventDefault();
+      editBook(bookObject.id);
+      editForm.style.display = "none";
+   };
+
+   cancelButton.onclick = (ev) => {
+      ev.preventDefault();
+      editForm.style.display = "none";
+   };
+};
+
 const confirmDialog = (message, callback, bookId) => {
    const confirmModal = document.getElementById("confirmModal");
    const confirmModalMessage = document.getElementById("confirmModalMessage");
@@ -222,31 +267,5 @@ const confirmDialog = (message, callback, bookId) => {
 
    noButton.onclick = () => {
       confirmModal.style.display = "none";
-   };
-};
-
-const formDialog = (message, callback, bookObject) => {
-   const formModal = document.getElementById("formModal");
-   const formModalMessage = document.getElementById("formModalMessage");
-   const cancelButton = document.getElementById("cancelFormButton");
-   const editTitle = document.getElementById("editTitle");
-   const editAuthor = document.getElementById("editAuthor");
-   const editYear = document.getElementById("editYear");
-
-   formModalMessage.innerText = message;
-   editTitle.value = bookObject.title;
-   editAuthor.value = bookObject.author;
-   editYear.value = bookObject.year;
-   formModal.style.display = "flex";
-
-   formModal.onsubmit = (ev) => {
-      ev.preventDefault();
-      callback(bookObject.id);
-      formModal.style.display = "none";
-   };
-
-   cancelButton.onclick = (ev) => {
-      ev.preventDefault();
-      formModal.style.display = "none";
    };
 };
