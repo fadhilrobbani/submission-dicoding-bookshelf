@@ -7,11 +7,12 @@ checkboxValue.addEventListener("click", () => {
    isCompleted();
 });
 
-searchBar.addEventListener("input", (ev) => {
-   const value = ev.target.value.toLowerCase().replace(/\s+/g, "");
-   const filteredBook = findBookByTitle(value);
-   render(filteredBook);
-   filteredBook.splice(0, filteredBook.length);
+searchBar.addEventListener("input", () => {
+   render();
+});
+
+searchBar.addEventListener("focus", () => {
+   searchBar.select();
 });
 
 document.addEventListener(RENDER_EVENT, () => {});
@@ -23,28 +24,40 @@ document.addEventListener("DOMContentLoaded", () => {
    addForm.addEventListener("submit", (ev) => {
       ev.preventDefault();
       addBook();
-      render(books);
+      render();
       addForm.reset();
    });
 
    getDataFromStorage(BOOKS_KEY);
-   render(books);
+   render();
 });
 
-const render = (booksArray) => {
-   const uncompletedBook = document.getElementById("uncompleted-book");
-   uncompletedBook.innerHTML = "";
-   const completedBook = document.getElementById("completed-book");
-   completedBook.innerHTML = "";
-   for (const book of booksArray) {
-      const bookElement = makeBook(book);
-      if (!book.isComplete) {
-         uncompletedBook.append(bookElement);
-      } else {
-         completedBook.append(bookElement);
+const render = () => {
+   const renderEach = (arrayBook) => {
+      const uncompletedBook = document.getElementById("uncompleted-book");
+      uncompletedBook.innerHTML = "";
+      const completedBook = document.getElementById("completed-book");
+      completedBook.innerHTML = "";
+      for (const book of arrayBook) {
+         const bookElement = makeBook(book);
+         if (!book.isComplete) {
+            uncompletedBook.append(bookElement);
+         } else {
+            completedBook.append(bookElement);
+         }
       }
+   };
+
+   if (searchBar.value !== "") {
+      const value = searchBar.value.toLowerCase().replace(/\s+/g, "");
+      const filteredBook = findBookByTitle(value);
+      renderEach(filteredBook);
+      document.dispatchEvent(new Event(RENDER_EVENT));
+      filteredBook.splice(0, filteredBook.length);
+   } else {
+      renderEach(books);
+      document.dispatchEvent(new Event(RENDER_EVENT));
    }
-   document.dispatchEvent(new Event(RENDER_EVENT));
 };
 
 const makeBook = (bookObject) => {
@@ -138,7 +151,7 @@ const moveBookToCompleted = (bookId) => {
    }
 
    setDataToStorage(BOOKS_KEY, books);
-   render(books);
+   render();
 };
 
 const moveBookToUncompleted = (bookId) => {
@@ -148,7 +161,7 @@ const moveBookToUncompleted = (bookId) => {
    }
 
    setDataToStorage(BOOKS_KEY, books);
-   render(books);
+   render();
 };
 
 const deleteBook = (bookId) => {
@@ -158,7 +171,7 @@ const deleteBook = (bookId) => {
       }
    }
    setDataToStorage(BOOKS_KEY, books);
-   render(books);
+   render();
 };
 
 const editBook = (bookId) => {
@@ -175,7 +188,7 @@ const editBook = (bookId) => {
    }
 
    setDataToStorage(BOOKS_KEY, books);
-   render(books);
+   render();
 };
 
 const generateBookObject = (id, title, author, year, isComplete) => {
