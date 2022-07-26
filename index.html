@@ -43,7 +43,7 @@
          </div>
       </div>
       <div class="add-modal" id="addFormModal">
-         <div class="add-modal-content">
+         <div class="form-modal-content">
             <h2 class="text-center">Masukkan Buku Baru</h2>
             <form class="form" action="#" id="addForm">
                <div class="form-group form-title">
@@ -81,27 +81,40 @@
                      name="is-completed"
                   />
                </div>
-               <input
-                  type="submit"
-                  value="Submit"
-                  name="Submit"
-                  class="btn-submit"
-               />
-               <button class="add-modal-cancelbutton" id="cancelAddFormButton">
-                  Cancel
-               </button>
+               <div class="button-container">
+                  <input
+                     type="submit"
+                     value="Submit"
+                     name="Submit"
+                     class="modal-content-button true-button"
+                  />
+                  <button
+                     class="modal-content-button false-button"
+                     id="cancelAddFormButton"
+                  >
+                     Cancel
+                  </button>
+               </div>
             </form>
          </div>
       </div>
       <div class="confirm-modal" id="confirmModal">
          <div class="confirm-modal-content">
             <h3 id="confirmModalMessage"></h3>
-            <button class="modal-content-button" id="yesConfirmButton">
-               Yes
-            </button>
-            <button class="modal-content-button" id="noConfirmButton">
-               No
-            </button>
+            <div class="button-container">
+               <button
+                  class="modal-content-button true-button"
+                  id="yesConfirmButton"
+               >
+                  Yes
+               </button>
+               <button
+                  class="modal-content-button false-button"
+                  id="noConfirmButton"
+               >
+                  No
+               </button>
+            </div>
          </div>
       </div>
       <div class="form-modal" id="editFormModal">
@@ -135,16 +148,21 @@
                      required
                   />
                </div>
-               <button
-                  type="submit"
-                  class="modal-content-button"
-                  id="updateFormButton"
-               >
-                  Update
-               </button>
-               <button class="modal-content-button" id="cancelEditFormButton">
-                  Cancel
-               </button>
+               <div class="button-container">
+                  <button
+                     type="submit"
+                     class="modal-content-button true-button"
+                     id="updateFormButton"
+                  >
+                     Update
+                  </button>
+                  <button
+                     class="modal-content-button false-button"
+                     id="cancelEditFormButton"
+                  >
+                     Cancel
+                  </button>
+               </div>
             </form>
          </div>
       </div>
