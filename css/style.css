@@ -10,6 +10,7 @@ body {
     box-sizing: border-box;
     background:url("/assets/image-background.svg"); 
     color: rgb(255, 255, 255);
+   
 }
 
 
@@ -72,7 +73,7 @@ input#search:focus{
 }
 
 .container {
-    width: auto;
+    width: 100%;
     border-radius: 20px;
     margin: 16px;
     background: rgba(149, 63, 196, 0.6);
@@ -397,16 +398,16 @@ input#search:focus{
     height: fit-content; 
 }
 
-@media only screen and (max-width: 876px) {
+@media only screen and (max-width: 900px) {
     .container-iscompleted#container-iscompleted{
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: auto;
     }
 
 }
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 676px) {
   
 
     .button-container{
