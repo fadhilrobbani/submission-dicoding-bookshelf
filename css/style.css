@@ -8,9 +8,6 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* background-position: center center;
-    background-attachment: fixed;
-    background-repeat: no-repeat; background-size: cover; */
     background:url("/assets/image-background.svg"); 
     color: rgb(255, 255, 255);
 }
@@ -43,8 +40,8 @@ h1{
 
 input#search{
     height: 40px;
-    width: 400px;
-    font-size: 15px;
+    width: 50%;
+    font-size: 18px;
     font-family: 'Montserrat', sans-serif;
     background: rgba(149, 63, 196, 0.78);
     border:none;
@@ -101,51 +98,6 @@ input#search:focus{
     margin: 15px 10px 0px 10px;
 }
 
-
-.add-modal{
-    position:fixed;
-    display: none;
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%;
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
-}
-
-.add-modal-content{
-    background-color: rgba(116, 25, 165, 0.9);
-    border-radius: 16px;
-    border: none;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    margin: auto;
-    height: 84vh; 
-    text-align: center;
-}
-
-.add-modal-cancelbutton:hover{
-    background-color: white;
-    color: red;
-}
-
-.add-modal-cancelbutton{
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-    border-radius: 16px;
-    padding: 12px 24px;
-    border: 2px solid #4C3575;
-    color: rgb(255, 255, 255);
-    font-size: 24px;
-    margin-top: 10px;
-    align-self: center;
-    cursor: pointer;
-    background: #ca1b0e;
-}
-
 .add-button{
     width: 40px;
     height: 40px;
@@ -171,8 +123,12 @@ input#search:focus{
     background: rgba(210, 208, 215, 0.3);
     border: 0.8px solid rgba(255, 255, 255, 0.541);
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
+
 
 .item > .inner h2 {
     margin-bottom: unset;
@@ -180,6 +136,7 @@ input#search:focus{
 
 .item > .inner p {
     margin-top: 5px;
+    font-size: 1em;
 }
 
 .form {
@@ -308,7 +265,6 @@ input#search:focus{
 
     background: url('../assets/check-outline.svg');
     background-size: contain;
-    margin-left: auto;
     cursor: pointer;
     border: none;
 }
@@ -451,17 +407,29 @@ input#search:focus{
 }
 
 @media only screen and (max-width: 576px) {
-    .container-iscompleted#container-iscompleted{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+  
 
     .button-container{
         display: flex;
         gap: 20px;
         flex-direction: column;
     }
+
+    .item{
+        flex-direction: column;
+    }
+
+    .inner{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inner p{
+        align-self: center;
+    }
     
+    .inner h2{
+        align-self: center;
+    }
     
 }

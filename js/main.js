@@ -73,6 +73,9 @@ const makeBook = (bookObject) => {
    container.append(textContainer);
    container.setAttribute("id", `book-${bookObject.id}`);
 
+   const buttonContainer = document.createElement("div");
+   buttonContainer.classList.add("container-button");
+
    const makeTrashButton = () => {
       const trashButton = document.createElement("button");
       trashButton.classList.add("trash-button");
@@ -105,7 +108,8 @@ const makeBook = (bookObject) => {
       const trashButton = makeTrashButton();
       const editButton = makeEditButton();
 
-      container.append(checkButton, editButton, trashButton);
+      buttonContainer.append(checkButton, editButton, trashButton);
+      container.append(buttonContainer);
    } else {
       const uncheckButton = document.createElement("button");
       uncheckButton.classList.add("uncheck-button");
@@ -116,7 +120,8 @@ const makeBook = (bookObject) => {
       const trashButton = makeTrashButton();
       const editButton = makeEditButton();
 
-      container.append(uncheckButton, editButton, trashButton);
+      buttonContainer.append(uncheckButton, editButton, trashButton);
+      container.append(buttonContainer);
    }
 
    return container;
